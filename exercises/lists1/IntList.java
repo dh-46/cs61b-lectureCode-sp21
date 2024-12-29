@@ -9,17 +9,29 @@ public class IntList {
 
 	/** Return the size of the list using... recursion! */
 	public int size() {
-		return 0;
+		if (rest == null) {
+			return 1;
+		}
+		return 1 + rest.size();
 	}
 
 	/** Return the size of the list using no recursion! */
 	public int iterativeSize() {
-		return 0;
+		IntList pointer = this;
+		int totalCount = 0;
+		while (pointer != null) {
+			pointer = pointer.rest;
+			totalCount++;
+		}
+		return totalCount;
 	}
 
 	/** Returns the ith value in this list.*/
 	public int get(int i) {
-		return 0;
+		if (i == 0) {
+			return first;
+		}
+		return rest.get(i - 1);
 	}
 
 	public static void main(String[] args) {
