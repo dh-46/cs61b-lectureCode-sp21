@@ -90,6 +90,26 @@ public class ArraySet<T> implements Iterable<T> {
         return stringBuilder.toString();
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        // 如果是同一個指向的物件那就不用再檢查了 (有助於效能)
+        if (this == obj) return true;
+
+        // 指定變數名為 otherSet 需要 JDK 16 以上版本。
+        if (obj instanceof ArraySet otherSet) {
+            if (otherSet.size != this.size) return false;
+
+            for (T x: this) {
+                if (!otherSet.contains(x)) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
 //        Set<String> javaset = new HashSet<>();
 //
