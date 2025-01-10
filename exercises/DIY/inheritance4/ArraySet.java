@@ -45,6 +45,7 @@ public class ArraySet<T> implements Iterable<T> {
 
     /**
      * returns an iterator (a.k.a. seer)
+     *
      * @return
      */
     @Override
@@ -68,21 +69,37 @@ public class ArraySet<T> implements Iterable<T> {
         @Override
         public T next() {
             T returnItem = (T) items[wizIndex];
-            wizIndex+=1;
+            wizIndex += 1;
             return returnItem;
         }
     }
 
-    public static void main(String[] args) {
-        Set<String> javaset = new HashSet<>();
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder("{");
 
-        javaset.add("A");
-        javaset.add("B");
-        javaset.add("C");
-
-        for (String s : javaset) {
-            System.out.println("Java Set: " + s);
+        for (int i = 0; i < size; i++) {
+            stringBuilder.append(items[i].toString());
+            if (i != size - 1) {
+                stringBuilder.append(", ");
+            }
         }
+
+        stringBuilder.append("}");
+
+        return stringBuilder.toString();
+    }
+
+    public static void main(String[] args) {
+//        Set<String> javaset = new HashSet<>();
+//
+//        javaset.add("A");
+//        javaset.add("B");
+//        javaset.add("C");
+//
+//        for (String s : javaset) {
+//            System.out.println("Java Set: " + s);
+//        }
 
         ArraySet<String> s = new ArraySet<>();
         s.add("horse");
@@ -90,16 +107,20 @@ public class ArraySet<T> implements Iterable<T> {
         s.add("house");
         s.add("fish");
 
-        // Uglier solution
-        Iterator<String> seer = s.iterator();
-        while (seer.hasNext()) {
-            System.out.println(seer.next());
-        }
+        System.out.println(s);
 
-        // Enhanced for loop
-        for (String string : s) {
-            System.out.println(string);
-        }
+//        // Uglier solution
+//        Iterator<String> seer = s.iterator();
+//        while (seer.hasNext()) {
+//            System.out.println(seer.next());
+//        }
+//
+//        // Enhanced for loop
+//        for (String string : s) {
+//            System.out.println(string);
+//        }
+
+
     }
 
     /* Also to do:
