@@ -1,7 +1,8 @@
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
-public class ArraySet<T> {
+public class ArraySet<T> implements Iterable<T> {
 
     private T[] items;
     private int size; // the next item to be added will be position "size"
@@ -42,19 +43,63 @@ public class ArraySet<T> {
         return size;
     }
 
+    /**
+     * returns an iterator (a.k.a. seer)
+     * @return
+     */
+    @Override
+    public Iterator<T> iterator() {
+        return new ArraySetIterator();
+    }
+
+    public class ArraySetIterator implements Iterator<T> {
+
+        private int wizIndex;
+
+        public ArraySetIterator() {
+            wizIndex = 0;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return wizIndex < size;
+        }
+
+        @Override
+        public T next() {
+            T returnItem = (T) items[wizIndex];
+            wizIndex+=1;
+            return returnItem;
+        }
+    }
+
     public static void main(String[] args) {
+        Set<String> javaset = new HashSet<>();
+
+        javaset.add("A");
+        javaset.add("B");
+        javaset.add("C");
+
+        for (String s : javaset) {
+            System.out.println("Java Set: " + s);
+        }
+
         ArraySet<String> s = new ArraySet<>();
-//        s.add(null);
         s.add("horse");
         s.add("fish");
         s.add("house");
-        s.add("fish");        
-        System.out.println(s.contains("horse"));        
-        System.out.println(s.size());
+        s.add("fish");
 
-        Set<String> s2 = new HashSet<>();
-        s2.add(null);
-        System.out.println(s2.contains(null));
+        // Uglier solution
+        Iterator<String> seer = s.iterator();
+        while (seer.hasNext()) {
+            System.out.println(seer.next());
+        }
+
+        // Enhanced for loop
+        for (String string : s) {
+            System.out.println(string);
+        }
     }
 
     /* Also to do:
