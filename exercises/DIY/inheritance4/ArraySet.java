@@ -1,3 +1,6 @@
+import java.util.HashSet;
+import java.util.Set;
+
 public class ArraySet<T> {
 
     private T[] items;
@@ -23,6 +26,10 @@ public class ArraySet<T> {
     /* Associates the specified value with the specified key in this map. 
        Throws an IllegalArgumentException if the key is null. */
     public void add(T x) {
+        if (x == null) {
+            throw new IllegalArgumentException("Cannot add null to ArraySet");
+        }
+
         if (contains(x)) {
             return;
         }
@@ -43,7 +50,11 @@ public class ArraySet<T> {
         s.add("house");
         s.add("fish");        
         System.out.println(s.contains("horse"));        
-        System.out.println(s.size());       
+        System.out.println(s.size());
+
+        Set<String> s2 = new HashSet<>();
+        s2.add(null);
+        System.out.println(s2.contains(null));
     }
 
     /* Also to do:
