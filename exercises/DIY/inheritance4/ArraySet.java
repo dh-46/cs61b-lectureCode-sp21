@@ -1,6 +1,4 @@
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 public class ArraySet<T> implements Iterable<T> {
 
@@ -76,6 +74,20 @@ public class ArraySet<T> implements Iterable<T> {
 
     @Override
     public String toString() {
+//        return normalToString();
+
+        return betterToString();
+    }
+
+    private String betterToString() {
+        List<String> listOfItems = new ArrayList<>();
+        for (T x: this) {
+            listOfItems.add(x.toString());
+        }
+        return "{" + String.join(", ", listOfItems) + "}";
+    }
+
+    private String normalToString() {
         StringBuilder stringBuilder = new StringBuilder("{");
 
         for (int i = 0; i < size; i++) {
