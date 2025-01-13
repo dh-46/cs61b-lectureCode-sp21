@@ -122,6 +122,20 @@ public class ArraySet<T> implements Iterable<T> {
         return false;
     }
 
+    /**
+     * Create a new ArraySet
+     * @param inputs items
+     * @return new ArraySet
+     * @param <E> generic type of the arrayset
+     */
+    public static <E> ArraySet<E> of(E... inputs) {
+        ArraySet<E> arraySet = new ArraySet<>();
+        for (E input : inputs) {
+            arraySet.add(input);
+        }
+        return arraySet;
+    }
+
     public static void main(String[] args) {
 //        Set<String> javaset = new HashSet<>();
 //
@@ -152,7 +166,8 @@ public class ArraySet<T> implements Iterable<T> {
 //            System.out.println(string);
 //        }
 
-
+        ArraySet<String> helloWorld = ArraySet.of("Hello", "World", "from", "Taiwan");
+        System.out.println(helloWorld);
     }
 
     /* Also to do:
